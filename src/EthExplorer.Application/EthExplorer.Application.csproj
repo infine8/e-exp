@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\EthExplorer.ApiContracts\EthExplorer.ApiContracts.csproj" />
+        <ProjectReference Include="..\EthExplorer.Domain\EthExplorer.Domain.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="AutoMapper" Version="12.0.0" />
+        <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.1" />
+        <PackageReference Include="Nethereum.Parity" Version="4.11.0" />
+        <PackageReference Include="Nethereum.Web3" Version="4.11.0" />
+    </ItemGroup>
+
+</Project>

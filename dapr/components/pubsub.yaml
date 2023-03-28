@@ -1,0 +1,31 @@
+apiVersion: dapr.io/v1alpha1
+kind: Component
+metadata:
+  name: pubsub
+  namespace: eth-explorer
+spec:
+  type: pubsub.rabbitmq
+  version: v1
+  metadata:
+    - name: connectionString
+      secretKeyRef:
+        name: ConnectionStrings
+        key: RabbitMQ
+    - name: durable
+      value: "true"
+    - name: deletedWhenUnused
+      value: "false"
+    - name: autoAck
+      value: "false"
+    - name: requeueInFailure
+      value: "true"
+    - name: reconnectWait
+      value: "5"
+    - name: concurrency
+      value: parallel
+    - name: publisherConfirm
+      value: "false"
+    - name: prefetchCount
+      value: 1
+auth:
+  secretStore: secretstore

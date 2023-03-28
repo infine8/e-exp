@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="FluentValidation" Version="11.4.0" />
+        <PackageReference Include="Mediator.Abstractions" Version="2.0.30" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\EthExplorer.Domain\EthExplorer.Domain.csproj" />
+    </ItemGroup>
+
+</Project>

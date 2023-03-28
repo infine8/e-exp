@@ -1,0 +1,11 @@
+global using System;
+global using System.Collections.Generic;
+global using Microsoft.Extensions.DependencyInjection;
+global using System.Linq;
+global using System.Threading;
+global using System.Threading.Tasks;
+global using Mediator;
+global using EthExplorer.Infrastructure.Common;
+global using Microsoft.EntityFrameworkCore;
+global using EthExplorer.Infrastructure.Common.Interceptors.Cache;
+global using EthExplorer.Infrastructure.Common.Interceptors.Diagnostic;

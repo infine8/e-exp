@@ -1,0 +1,49 @@
+name: eth-explorer
+namespace: eth-explorer
+extensions:
+  - name: dapr
+    log-level: debug
+    components-path: ".\\dapr\\components\\"
+services:
+  - name: api
+    project: src\EthExplorer.Service.Api\EthExplorer.Service.Api.csproj
+    bindings:
+      - protocol: http
+        name: http
+        port: 5555
+      - protocol: https
+        name: https
+        port: 5556
+    buildProperties:
+      - name: Configuration
+        value: Debug
+    env:
+      - ASPNETCORE_ENVIRONMENT="Local"
+#  - name: forward-block-explorer
+#    project: src\EthExplorer.Service.ForwardBlockExplorer\EthExplorer.Service.ForwardBlockExplorer.csproj
+#    buildProperties:
+#      - name: Configuration
+#        value: Debug
+#    env:
+#      - ASPNETCORE_ENVIRONMENT="Local"
+#  - name: forward-block-processor
+#    project: src\EthExplorer.Service.ForwardBlockProcessor\EthExplorer.Service.ForwardBlockProcessor.csproj
+#    buildProperties:
+#      - name: Configuration
+#        value: Debug
+#    env:
+#      - ASPNETCORE_ENVIRONMENT="Local" 
+#  - name: backward-block-explorer
+#    project: src\EthExplorer.Service.BackwardBlockExplorer\EthExplorer.Service.BackwardBlockExplorer.csproj
+#    buildProperties:
+#      - name: Configuration
+#        value: Debug
+#    env:
+#      - ASPNETCORE_ENVIRONMENT="Local"
+#  - name: backward-block-processor
+#    project: src\EthExplorer.Service.BackwardBlockProcessor\EthExplorer.Service.BackwardBlockProcessor.csproj
+#    buildProperties:
+#      - name: Configuration
+#        value: Debug
+#    env:
+#      - ASPNETCORE_ENVIRONMENT="Local"

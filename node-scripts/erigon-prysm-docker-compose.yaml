@@ -1,0 +1,62 @@
+version: "3.8"
+
+services:
+  erigon:
+    image: thorax/erigon
+    pull_policy: always
+    container_name: erigon
+    restart: unless-stopped
+    network_mode: host
+    volumes:
+      - $ERIGON_DATADIR:/data
+    stop_signal: SIGINT
+    stop_grace_period: 2m
+    command:
+      - --datadir=/data
+      - --chain=mainnet
+      - --externalcl
+      - --port=30303
+      - --http.port=8545
+      - --authrpc.port=8551
+      - --torrent.port=42069
+      - --authrpc.jwtsecret=/data/jwt.hex
+      - --private.api.addr=127.0.0.1:9090
+      - --http
+      - --http.addr=0.0.0.0
+      - --ws
+      - --http.api=eth,debug,net,trace,web3,erigon
+    logging:
+      driver: json-file
+      options:
+        max-size: 2m
+        max-file: 10
+        
+  prysm:
+    image: gcr.io/prysmaticlabs/prysm/beacon-chain
+    pull_policy: always
+    container_name: prysm
+    restart: unless-stopped
+    network_mode: host    
+    stop_grace_period: 2m
+    volumes:
+      - $PRYSM_DATADIR:/data
+      - $ERIGON_DATADIR:/erigon
+    depends_on:
+      erigon
+    command:
+      - --accept-terms-of-use
+      - --datadir=/data
+      - --disable-monitoring
+      - --rpc-host=0.0.0.0
+      - --execution-endpoint=http://localhost:8551
+      - --jwt-secret=/erigon/jwt.hex
+      - --rpc-host=0.0.0.0
+      - --rpc-port=4000
+      - --grpc-gateway-corsdomain=*
+      - --grpc-gateway-host=0.0.0.0
+      - --grpc-gateway-port=3500
+    logging:
+      driver: json-file
+      options:
+        max-size: 2m
+        max-file: 10

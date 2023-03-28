@@ -1,0 +1,23 @@
+apiVersion: dapr.io/v1alpha1
+kind: Component
+metadata:
+  name: statestore
+  namespace: eth-explorer
+spec:
+  type: state.redis
+  version: v1
+  metadata:
+    - name: keyPrefix
+      value: "none" 
+    - name: redisHost
+      secretKeyRef:
+        name: Redis
+        key: Host
+    - name: redisPassword
+      secretKeyRef:
+        name: Redis
+        key: Password      
+    - name: actorStateStore
+      value: "true"
+auth:
+  secretStore: secretstore

@@ -1,0 +1,29 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <OutputType>Library</OutputType>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\EthExplorer.Infrastructure\EthExplorer.Infrastructure.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="AspNetCore.HealthChecks.UI.Client" Version="6.0.5" />
+      <PackageReference Include="Serilog.AspNetCore" Version="6.1.0" />
+      <PackageReference Include="Serilog.Sinks.Elasticsearch" Version="9.0.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Content Update="appsettings.Local.json">
+        <DependentUpon>appsettings.json</DependentUpon>
+      </Content>
+      <Content Update="appsettings.Prod.json">
+        <DependentUpon>appsettings.json</DependentUpon>
+      </Content>
+    </ItemGroup>
+
+</Project>
